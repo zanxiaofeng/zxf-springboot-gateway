@@ -19,6 +19,7 @@
     <modules>
         <module>manual-auth-service</module>
         <module>default-auth-service</module>
+        <module>gateway-service</module>
     </modules>
 
     <properties>

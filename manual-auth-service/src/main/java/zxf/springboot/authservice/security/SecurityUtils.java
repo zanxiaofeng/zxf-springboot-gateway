@@ -20,8 +20,6 @@ public class SecurityUtils {
     public static void logout(HttpServletRequest request) {
         SecurityContextHolder.clearContext();
         HttpSession session = request.getSession(false);
-        if (session != null) {
-            session.invalidate();
-        }
+        session.invalidate();
     }
 }

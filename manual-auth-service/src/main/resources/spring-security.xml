@@ -16,7 +16,7 @@
         <intercept-url pattern="/auth/logon-failed" access="permitAll()"/>
         <intercept-url pattern="/auth/logon-succeed" access="isAuthenticated()"/>
         <intercept-url pattern="/auth/home" access="isAuthenticated()"/>
-        <intercept-url pattern="/auth/logout" access="permitAll()"/>
+        <intercept-url pattern="/auth/logout" access="isAuthenticated()"/>
         <csrf disabled="true"/>
     </http>
     <beans:bean id="authenticationEntryPoint"

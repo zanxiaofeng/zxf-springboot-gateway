@@ -1,0 +1,29 @@
+server:
+  port: 8088
+  ssl:
+    enabled: false
+    key-alias: localhost
+    key-store: classpath:keystore/localhost.jks
+    key-store-password: changeit
+spring:
+  application:
+    name: gateway-service
+  cloud:
+    gateway:
+      default-filters:
+        - AddRequestHeader=X-Group-Id, ZXF
+        - AddResponseHeader=X-Group-Id, ZXF
+      routes:
+        - id: manual-auth-service
+          uri: http://localhost:8080
+          predicates:
+            - Path=/manual/**
+          filters:
+            - StripPrefix=1
+            - AddRequestHeader=X-Request-Id,DDD
+            - AddResponseHeader=X-Request-Id,DDD
+            - E2ETrustTokenFilter
+e2etrust:
+  filter:
+    access-token-key: Access-Token
+    e2e-token-header: X-E2E-Trust-Token
