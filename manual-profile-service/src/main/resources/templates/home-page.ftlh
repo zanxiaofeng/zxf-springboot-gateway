@@ -11,6 +11,6 @@
 <h1>Profile</h1>
 <h2>name: ${principal.getName()}</h2>
 <h2> age: ${principal.getAge()}</h2>
-<a href="${siteUrl}/auth/profile">Change Profile</a>
+<a href="${siteUrl}/profile/profile">Change Profile</a>
 <body>
 </html>

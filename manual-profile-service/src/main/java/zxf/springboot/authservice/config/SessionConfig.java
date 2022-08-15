@@ -9,7 +9,6 @@ import org.springframework.session.data.mongo.config.annotation.web.http.EnableM
 @Configuration
 @EnableMongoHttpSession
 public class SessionConfig {
-    @Bean
     @ConditionalOnProperty(prefix = "zxf", name = "session.jackson", havingValue = "true")
     public JacksonMongoSessionConverter jacksonMongoSessionConverter() {
         System.out.println("SessionConfig::jacksonMongoSessionConverter");

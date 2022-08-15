@@ -7,6 +7,8 @@
 <body>
 <h1>Logon-Succeed</h1>
 <h2>${SessionId}</h2>
-<a href="${siteUrl}/auth/home">Home</a>
+<h2>name: ${principal.getName()}</h2>
+<h2> age: ${principal.getAge()}</h2>
+<a href="${siteUrl}/profile/home">Home</a>
 <body>
 </html>

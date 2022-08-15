@@ -11,11 +11,9 @@
         http://www.springframework.org/schema/security/spring-security.xsd">
     <debug/>
     <http use-expressions="true" entry-point-ref="authenticationEntryPoint">
-        <intercept-url pattern="/auth/logon" access="permitAll()"/>
-        <intercept-url pattern="/auth/logon-form" access="permitAll()"/>
-        <intercept-url pattern="/auth/logon-failed" access="permitAll()"/>
-        <intercept-url pattern="/auth/logon-succeed" access="isAuthenticated()"/>
-        <intercept-url pattern="/auth/logout" access="isAuthenticated()"/>
+        <intercept-url pattern="/profile/home" access="isAuthenticated()"/>
+        <intercept-url pattern="/profile/profile" access="isAuthenticated()"/>
+        <intercept-url pattern="/profile/profile-form" access="isAuthenticated()"/>
         <csrf disabled="true"/>
     </http>
     <beans:bean id="authenticationEntryPoint"
