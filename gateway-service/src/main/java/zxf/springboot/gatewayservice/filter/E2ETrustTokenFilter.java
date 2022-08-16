@@ -11,6 +11,8 @@ import org.springframework.web.server.ServerWebExchange;
 import reactor.core.publisher.Mono;
 import zxf.springboot.gatewayservice.service.E2ETokenService;
 
+import java.util.Objects;
+
 @Component
 public class E2ETrustTokenFilter extends AbstractGatewayFilterFactory<E2ETrustTokenFilter.Config> {
     @Autowired
@@ -23,7 +25,7 @@ public class E2ETrustTokenFilter extends AbstractGatewayFilterFactory<E2ETrustTo
     @Override
     public GatewayFilter apply(Config config) {
         return (exchange, chain) -> {
-            Mono<ServerWebExchange> request = exchange.getSession().map(webSession -> {
+            Mono<ServerWebExchange> newExchange = exchange.getSession().filter(Objects::nonNull).map(webSession -> {
                 ServerHttpRequest.Builder builder = exchange.getRequest().mutate();
                 System.out.println("E2ETrustTokenFilter::apply, " + webSession.getId());
                 String accessToken = webSession.getAttribute(config.getAccessTokenKey());
@@ -32,8 +34,8 @@ public class E2ETrustTokenFilter extends AbstractGatewayFilterFactory<E2ETrustTo
                     builder.header(config.getE2eTokenHeader(), e2eTrustToken);
                 }
                 return exchange.mutate().request(builder.build()).build();
-            });
-            return request.flatMap(chain::filter);
+            }).defaultIfEmpty(exchange);
+            return newExchange.flatMap(chain::filter);
         };
     }
 
