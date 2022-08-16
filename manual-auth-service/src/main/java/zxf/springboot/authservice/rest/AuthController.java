@@ -21,6 +21,7 @@ public class AuthController {
     public ModelAndView logon(HttpServletRequest request) {
         System.out.println("AuthController::logon");
         HttpSession session = request.getSession(true);
+        session.setAttribute("Access-Token", "token-logon");
         ModelAndView modelAndView = new ModelAndView("logon-page");
         modelAndView.addObject("SessionId", session.getId());
         modelAndView.addObject("siteUrl", siteUrl);
@@ -37,7 +38,7 @@ public class AuthController {
         MyAuthentication myAuthentication = new MyAuthentication(new MyAuthentication.MyUser(name));
         SecurityUtils.logon(request, myAuthentication);
         HttpSession session = request.getSession(false);
-        session.setAttribute("AccessToken", "token-zzz");
+        session.setAttribute("Access-Token", "token-succeed");
         return new ModelAndView("redirect:" + siteUrl + "/auth/logon-succeed");
     }
 

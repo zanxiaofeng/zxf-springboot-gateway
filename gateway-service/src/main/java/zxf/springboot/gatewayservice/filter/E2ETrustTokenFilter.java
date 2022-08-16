@@ -25,16 +25,19 @@ public class E2ETrustTokenFilter extends AbstractGatewayFilterFactory<E2ETrustTo
     @Override
     public GatewayFilter apply(Config config) {
         return (exchange, chain) -> {
-            Mono<ServerWebExchange> newExchange = exchange.getSession().filter(Objects::nonNull).map(webSession -> {
-                ServerHttpRequest.Builder builder = exchange.getRequest().mutate();
-                System.out.println("E2ETrustTokenFilter::apply, " + webSession.getId());
-                String accessToken = webSession.getAttribute(config.getAccessTokenKey());
-                if (accessToken != null) {
-                    String e2eTrustToken = e2ETokenService.getE2EToken(accessToken);
-                    builder.header(config.getE2eTokenHeader(), e2eTrustToken);
-                }
-                return exchange.mutate().request(builder.build()).build();
-            }).defaultIfEmpty(exchange);
+            Mono<ServerWebExchange> newExchange = exchange.getSession()
+                    .filter(Objects::nonNull)
+                    .map(webSession -> {
+                        ServerHttpRequest.Builder builder = exchange.getRequest().mutate();
+                        System.out.println("E2ETrustTokenFilter::apply, " + webSession.getId());
+                        String accessToken = webSession.getAttribute(config.getAccessTokenKey());
+                        System.out.println("E2ETrustTokenFilter::AccessTokenKey, " + accessToken);
+                        if (accessToken != null) {
+                            String e2eTrustToken = e2ETokenService.getE2EToken(accessToken);
+                            builder.header(config.getE2eTokenHeader(), e2eTrustToken);
+                        }
+                        return exchange.mutate().request(builder.build()).build();
+                    }).defaultIfEmpty(exchange);
             return newExchange.flatMap(chain::filter);
         };
     }
