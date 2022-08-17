@@ -1,4 +1,4 @@
-package zxf.springboot.authservice;
+package zxf.springboot.profileservice;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
