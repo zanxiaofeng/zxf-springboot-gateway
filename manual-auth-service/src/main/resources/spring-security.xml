@@ -16,11 +16,14 @@
         <intercept-url pattern="/auth/logon-failed" access="permitAll()"/>
         <intercept-url pattern="/auth/logon-succeed" access="isAuthenticated()"/>
         <intercept-url pattern="/auth/logout" access="isAuthenticated()"/>
+        <request-cache ref="nullRequestCache"/>
         <csrf disabled="true"/>
     </http>
     <beans:bean id="authenticationEntryPoint"
                 class="org.springframework.security.web.authentication.LoginUrlAuthenticationEntryPoint">
         <beans:constructor-arg value="${site.url}/auth/logon"/>
+    </beans:bean>
+    <beans:bean id="nullRequestCache" class="org.springframework.security.web.savedrequest.NullRequestCache">
     </beans:bean>
     <authentication-manager/>
 </beans:beans>
