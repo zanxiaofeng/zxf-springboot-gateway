@@ -46,6 +46,7 @@ security:
   authenticationEntryPoint: /manual/auth/logon
   authorize:
     permitAll:
+      - /favicon.ico
       - /manual/auth/logon
       - /manual/auth/logon-form
       - /manual/auth/logon-failed
