@@ -10,6 +10,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.net.URI;
 
 @RestController
 @RequestMapping("/auth")
@@ -50,7 +51,7 @@ public class AuthController {
 
         String returnPage = (String) session.getAttribute(SESSION_ATTRIBUTE_RETURN_PAGE);
         if (Strings.isNotEmpty(returnPage)) {
-            return new ModelAndView("redirect:" + siteUrl + returnPage);
+            return new ModelAndView("redirect:" + URI.create(siteUrl).resolve(returnPage));
         }
 
         return new ModelAndView("redirect:" + siteUrl + "/auth/logon-succeed");
