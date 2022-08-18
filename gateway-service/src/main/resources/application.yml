@@ -5,6 +5,7 @@ server:
     key-alias: localhost
     key-store: classpath:keystore/localhost.jks
     key-store-password: changeit
+
 spring:
   application:
     name: gateway-service
@@ -40,3 +41,13 @@ e2etrust:
   filter:
     access-token-key: Access-Token
     e2e-token-header: X-E2E-Trust-Token
+
+security:
+  authenticationEntryPoint: /manual/auth/logon
+  authorize:
+    permitAll:
+      - /manual/auth/logon
+      - /manual/auth/logon-form
+      - /manual/auth/logon-failed
+    hasAnyAuthority:
+      - /others/**, ADMIN

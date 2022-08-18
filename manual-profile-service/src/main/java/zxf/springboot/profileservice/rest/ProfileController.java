@@ -16,6 +16,7 @@ import javax.servlet.http.HttpSession;
 @RequestMapping("/profile")
 public class ProfileController {
     private static final String HTTP_HEADER_NAME_X_E2E_Trust_Token = "X-E2E-Trust-Token";
+    private static final String SESSION_ATTRIBUTE_ACCESS_TOKEN = "Access-Token";
     private static final String MODEL_AND_VIEW_OBJECT_KEY_SESSION_ID = "SessionId";
     private static final String MODEL_AND_VIEW_OBJECT_KEY_SITE_URL = "siteUrl";
     private static final String MODEL_AND_VIEW_OBJECT_KEY_PRINCIPAL = "principal";
@@ -56,6 +57,7 @@ public class ProfileController {
 
     private void logInfo(String method, HttpServletRequest request, HttpSession session) {
         String e2eTrustToken = request.getHeader(HTTP_HEADER_NAME_X_E2E_Trust_Token);
-        //System.out.println("AuthController::"+ method + ", E2E-Trust-Token=" + );
+        System.out.println("AuthController::" + method + ", " + e2eTrustToken);
+        session.setAttribute(SESSION_ATTRIBUTE_ACCESS_TOKEN, session.getId() + "-" + method);
     }
 }

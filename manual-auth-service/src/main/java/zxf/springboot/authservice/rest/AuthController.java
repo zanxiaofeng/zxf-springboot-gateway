@@ -6,7 +6,9 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import zxf.springboot.authservice.security.SecurityUtils;
 
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 @RestController
@@ -26,9 +28,7 @@ public class AuthController {
     public ModelAndView logon(HttpServletRequest request, HttpSession session, @RequestParam(required = false) String returnPage) {
         logInfo("logon", request, session);
 
-        if (Strings.isNotEmpty(returnPage)) {
-            session.setAttribute(SESSION_ATTRIBUTE_RETURN_PAGE, returnPage);
-        }
+        session.setAttribute(SESSION_ATTRIBUTE_RETURN_PAGE, returnPage);
 
         ModelAndView modelAndView = new ModelAndView("logon-page");
         modelAndView.addObject(MODEL_AND_VIEW_OBJECT_KEY_SESSION_ID, session.getId());
@@ -77,17 +77,17 @@ public class AuthController {
     }
 
     @GetMapping("/logout")
-    public ModelAndView logout(HttpServletRequest request, HttpSession session) {
+    public ModelAndView logout(HttpServletRequest request, HttpServletResponse response, HttpSession session) throws ServletException {
         logInfo("logout", request, session);
 
-        SecurityUtils.logout(request);
+        SecurityUtils.logout(request, response);
 
         return new ModelAndView("redirect:" + siteUrl + "/profile/home");
     }
 
     private void logInfo(String method, HttpServletRequest request, HttpSession session) {
         String e2eTrustToken = request.getHeader(HTTP_HEADER_NAME_X_E2E_Trust_Token);
+        System.out.println("AuthController::" + method + ", " + e2eTrustToken);
         session.setAttribute(SESSION_ATTRIBUTE_ACCESS_TOKEN, session.getId() + "-" + method);
-        //System.out.println("AuthController::"+ method + ", E2E-Trust-Token=" + );
     }
 }

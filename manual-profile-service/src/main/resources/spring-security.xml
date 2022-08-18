@@ -9,7 +9,7 @@
         http://www.springframework.org/schema/context/spring-context.xsd
         http://www.springframework.org/schema/security
         http://www.springframework.org/schema/security/spring-security.xsd">
-    <debug/>
+<!--    <debug/>-->
     <http use-expressions="true" entry-point-ref="authenticationEntryPoint">
         <intercept-url pattern="/profile/home" access="isAuthenticated()"/>
         <intercept-url pattern="/profile/profile" access="isAuthenticated()"/>
