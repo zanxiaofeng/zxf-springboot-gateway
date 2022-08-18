@@ -17,11 +17,10 @@ import static org.springframework.security.web.context.HttpSessionSecurityContex
 
 public class SecurityUtils {
 
-    public static void logon(HttpServletRequest request, String username) {
+    public static void logon(HttpSession session, String username) {
         MyAuthentication myAuthentication = new MyAuthentication(new MyAuthentication.MyUser(username));
         SecurityContext sc = SecurityContextHolder.getContext();
         sc.setAuthentication(myAuthentication);
-        HttpSession session = request.getSession(true);
         session.setAttribute(SPRING_SECURITY_CONTEXT_KEY, sc);
     }
 
@@ -35,7 +34,7 @@ public class SecurityUtils {
         new SecurityContextLogoutHandler().logout(request, response, null);
 
         //Cookie Clearing Logout
-        for (Cookie cookie: request.getCookies()) {
+        for (Cookie cookie : request.getCookies()) {
             Cookie cookieToDelete = new Cookie(cookie.getName(), null);
             cookieToDelete.setMaxAge(0);
             response.addCookie(cookieToDelete);

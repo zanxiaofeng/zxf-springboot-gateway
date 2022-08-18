@@ -25,7 +25,8 @@ public class AuthController {
     private String siteUrl;
 
     @GetMapping("/logon")
-    public ModelAndView logon(HttpServletRequest request, HttpSession session, @RequestParam(required = false) String returnPage) {
+    public ModelAndView logon(HttpServletRequest request, @RequestParam(required = false) String returnPage) {
+        HttpSession session = request.getSession(true);
         logInfo("logon", request, session);
 
         session.setAttribute(SESSION_ATTRIBUTE_RETURN_PAGE, returnPage);
@@ -45,7 +46,7 @@ public class AuthController {
             //throw new AccessDeniedException("Invalid username or password!");
         }
 
-        SecurityUtils.logon(request, name);
+        SecurityUtils.logon(session, name);
 
         String returnPage = (String) session.getAttribute(SESSION_ATTRIBUTE_RETURN_PAGE);
         if (Strings.isNotEmpty(returnPage)) {
