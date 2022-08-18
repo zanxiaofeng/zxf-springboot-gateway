@@ -15,3 +15,7 @@ org.springframework.session.web.server.session.SpringSessionWebSessionStore
 org.springframework.session.ReactiveSessionRepository
 org.springframework.session.data.mongo.ReactiveMongoSessionRepository
 org.springframework.web.server.session.WebSessionIdResolver(org.springframework:spring-web:5.3.20)
+
+Status:
+Redis works well
+Mongo does not work
