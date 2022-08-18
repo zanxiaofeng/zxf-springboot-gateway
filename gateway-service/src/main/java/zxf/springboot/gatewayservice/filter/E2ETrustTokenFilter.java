@@ -27,7 +27,7 @@ public class E2ETrustTokenFilter extends AbstractGatewayFilterFactory<E2ETrustTo
         return (exchange, chain) -> {
             Mono<ServerWebExchange> newExchange = exchange.getSession().map(webSession -> {
                 String accessToken = webSession.getAttribute(config.getAccessTokenKey());
-                System.out.println("E2ETrustTokenFilter::apply, " + webSession.getId() + ", " + accessToken);
+                System.out.println("E2ETrustTokenFilter::" + exchange.getRequest().getPath() + ", " + webSession.getId() + ", " + accessToken);
 
                 ServerHttpRequest.Builder builder = exchange.getRequest().mutate();
                 if (accessToken != null) {

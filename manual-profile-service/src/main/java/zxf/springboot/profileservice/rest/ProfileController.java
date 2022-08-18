@@ -57,7 +57,7 @@ public class ProfileController {
 
     private void logInfo(String method, HttpServletRequest request, HttpSession session) {
         String e2eTrustToken = request.getHeader(HTTP_HEADER_NAME_X_E2E_Trust_Token);
-        System.out.println("ProfileController::" + method + ", " + e2eTrustToken);
+        System.out.println("ProfileController::" + method + ", " + session.getId() + ", " + e2eTrustToken);
         session.setAttribute(SESSION_ATTRIBUTE_ACCESS_TOKEN, session.getId() + "-" + method);
     }
 }
