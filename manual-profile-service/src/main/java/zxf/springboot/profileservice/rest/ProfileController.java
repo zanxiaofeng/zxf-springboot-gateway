@@ -51,6 +51,7 @@ public class ProfileController {
 
         MyAuthentication.MyUser myUser = SecurityUtils.getCurrentUser();
         myUser.setAge(age);
+        SecurityUtils.saveCurrentUser(session);
 
         return new ModelAndView("redirect:" + siteUrl + "/profile/home");
     }

@@ -15,4 +15,9 @@ public class SecurityUtils {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         return (MyAuthentication.MyUser) authentication.getPrincipal();
     }
+
+    public static void saveCurrentUser(HttpSession session) {
+        SecurityContext sc = SecurityContextHolder.getContext();
+        session.setAttribute(SPRING_SECURITY_CONTEXT_KEY, sc);
+    }
 }

@@ -50,7 +50,7 @@ public class AuthController {
 
         String returnPage = (String) session.getAttribute(SESSION_ATTRIBUTE_RETURN_PAGE);
         if (Strings.isNotEmpty(returnPage)) {
-            return new ModelAndView("redirect:" + returnPage);
+            return new ModelAndView("redirect:" + siteUrl + returnPage);
         }
 
         return new ModelAndView("redirect:" + siteUrl + "/auth/logon-succeed");
