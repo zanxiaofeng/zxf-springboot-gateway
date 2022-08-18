@@ -33,9 +33,10 @@ spring:
             - AddRequestHeader=X-Request-Id,DDD
             - AddResponseHeader=X-Request-Id,DDD
             - E2ETrustTokenFilter
-  data:
-    mongodb:
-      uri: mongodb://root:example@localhost:27017/admin
+  redis:
+    host: localhost
+    port: 6379
+    password:
 
 e2etrust:
   filter:
