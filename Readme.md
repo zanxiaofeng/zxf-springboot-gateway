@@ -4,8 +4,8 @@ default-auth-service
 manual-auth-service + manual-profile-service + gateway-service
 
 # Status:
-Redis works well
-Mongo does not work
+- Redis works well
+- Mongo does not work
 
 # Security:
 org.springframework.security.web.context.SecurityContextPersistenceFilter
