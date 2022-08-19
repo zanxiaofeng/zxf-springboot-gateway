@@ -21,7 +21,6 @@
 - javax.servlet.http.HttpServletResponse
 - javax.servlet.http.HttpSession*
 
-
 # WebMVC.HttpSession:
 - org.springframework.session.Session*
 - org.springframework.session.MapSession
@@ -36,7 +35,6 @@
 - org.springframework.session.web.http.SessionRepositoryFilter.SessionRepositoryResponseWrapper
 - org.springframework.session.web.http.SessionRepositoryFilter.SessionRepositoryRequestWrapper.HttpSessionWrapper
 
-
 # WebMVC.HttpSession.Redis:
 - org.springframework.session.data.redis.config.annotation.web.http.EnableRedisHttpSession
 - org.springframework.session.data.redis.config.annotation.web.http.RedisHttpSessionConfiguration
@@ -49,7 +47,9 @@
 - org.springframework.session.data.mongo.config.annotation.web.http.MongoHttpSessionConfiguration
 - org.springframework.session.data.mongo.MongoSession*
 - org.springframework.session.data.mongo.MongoIndexedSessionRepository
-- org.springframework.session.data.mongo.JdkMongoSessionConverter
+- org.springframework.session.data.mongo.JacksonMongoSessionConverter
+- org.springframework.security.jackson2/SecurityJackson2Modules
+- org.springframework.security.jackson2.SecurityJackson2Modules.AllowlistTypeIdResolver
 
 # WebFlux
 - org.springframework.web.server.ServerWebExchange(Request, Response)
@@ -71,7 +71,6 @@
 - org.springframework.session.ReactiveSessionRepository
 - org.springframework.session.ReactiveMapSessionRepository
 
-
 # WebFlux.WebSession.Redis:
 - org.springframework.session.data.redis.config.annotation.web.server.EnableRedisWebSession
 - org.springframework.session.data.redis.config.annotation.web.server.RedisWebSessionConfiguration
@@ -86,4 +85,6 @@
 - org.springframework.session.data.redis.config.annotation.web.server.RedisWebSessionConfiguration
 - org.springframework.session.data.mongo.MongoSession
 - org.springframework.session.data.mongo.ReactiveMongoSessionRepository
-- org.springframework.session.data.mongo.JdkMongoSessionConverter
+- org.springframework.session.data.mongo.JacksonMongoSessionConverter
+- org.springframework.security.jackson2/SecurityJackson2Modules
+- org.springframework.security.jackson2.SecurityJackson2Modules.AllowlistTypeIdResolver

@@ -12,7 +12,6 @@ import org.springframework.session.web.http.DefaultCookieSerializer;
 @EnableMongoHttpSession
 public class SessionConfig {
     @Bean
-    @ConditionalOnProperty(prefix = "zxf", name = "session.jackson", havingValue = "true")
     public JacksonMongoSessionConverter jacksonMongoSessionConverter() {
         System.out.println("SessionConfig::jacksonMongoSessionConverter");
         return new JacksonMongoSessionConverter();
