@@ -11,9 +11,7 @@
         http://www.springframework.org/schema/security/spring-security.xsd">
     <!--    <debug/>-->
     <http use-expressions="true" entry-point-ref="authenticationEntryPoint">
-        <intercept-url pattern="/profile/home" access="isAuthenticated()"/>
-        <intercept-url pattern="/profile/profile" access="isAuthenticated()"/>
-        <intercept-url pattern="/profile/profile-form" access="isAuthenticated()"/>
+        <intercept-url pattern="/**" access="isAuthenticated()"/>
         <request-cache ref="nullRequestCache"/>
         <csrf disabled="true"/>
     </http>
