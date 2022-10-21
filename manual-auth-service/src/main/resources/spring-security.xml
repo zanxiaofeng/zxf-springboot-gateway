@@ -9,7 +9,7 @@
         http://www.springframework.org/schema/context/spring-context.xsd
         http://www.springframework.org/schema/security
         http://www.springframework.org/schema/security/spring-security.xsd">
-<!--    <debug/>-->
+    <!--    <debug/>-->
     <http use-expressions="true" entry-point-ref="authenticationEntryPoint">
         <intercept-url pattern="/auth/logon-succeed" access="isAuthenticated()"/>
         <intercept-url pattern="/auth/logout" access="isAuthenticated()"/>
@@ -17,8 +17,7 @@
         <request-cache ref="nullRequestCache"/>
         <csrf disabled="true"/>
     </http>
-    <beans:bean id="authenticationEntryPoint"
-                class="org.springframework.security.web.authentication.LoginUrlAuthenticationEntryPoint">
+    <beans:bean id="authenticationEntryPoint" class="zxf.springboot.authservice.security.MyAuthenticationEntryPoint">
         <beans:constructor-arg value="${site.url}/auth/logon"/>
     </beans:bean>
     <beans:bean id="nullRequestCache" class="org.springframework.security.web.savedrequest.NullRequestCache">

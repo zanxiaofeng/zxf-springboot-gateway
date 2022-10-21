@@ -15,8 +15,7 @@
         <request-cache ref="nullRequestCache"/>
         <csrf disabled="true"/>
     </http>
-    <beans:bean id="authenticationEntryPoint"
-                class="org.springframework.security.web.authentication.LoginUrlAuthenticationEntryPoint">
+    <beans:bean id="authenticationEntryPoint" class="zxf.springboot.profileservice.security.MyAuthenticationEntryPoint">
         <beans:constructor-arg value="${site.url}/auth/logon"/>
     </beans:bean>
     <beans:bean id="nullRequestCache" class="org.springframework.security.web.savedrequest.NullRequestCache">
