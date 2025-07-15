@@ -34,6 +34,11 @@
 - org.springframework.session.web.http.SessionRepositoryFilter.SessionRepositoryRequestWrapper
 - org.springframework.session.web.http.SessionRepositoryFilter.SessionRepositoryResponseWrapper
 - org.springframework.session.web.http.SessionRepositoryFilter.SessionRepositoryRequestWrapper.HttpSessionWrapper
+- org.springframework.session.events.AbstractSessionEvent
+- org.springframework.session.events.SessionCreatedEvent
+- org.springframework.session.events.SessionDestroyedEvent
+- org.springframework.session.events.SessionDeletedEvent
+- org.springframework.session.events.SessionExpiredEvent
 
 # WebMVC.HttpSession.Redis:
 - org.springframework.session.data.redis.config.annotation.web.http.EnableRedisHttpSession
@@ -41,6 +46,8 @@
 - org.springframework.session.data.redis.RedisIndexedSessionRepository
 - org.springframework.session.data.redis.RedisIndexedSessionRepository.RedisSession*
 - org.springframework.data.redis.serializer.RedisSerializer
+- org.springframework.data.redis.connection.Message;
+- org.springframework.data.redis.connection.MessageListener;
 
 # WebMVC.HttpSession.Mongo:
 - org.springframework.session.data.mongo.config.annotation.web.http.EnableMongoHttpSession
