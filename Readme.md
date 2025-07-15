@@ -1,7 +1,11 @@
 # Site 1
 - default-auth-service
+- http://localhost:8082/auth/home
+- davis/davis
 # Site 2
 - manual-auth-service + manual-profile-service + gateway-service
+- http://localhost:8088/manual/profile/home
+- davis/davis
 
 # Status:
 - Redis works well
