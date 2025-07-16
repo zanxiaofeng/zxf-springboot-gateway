@@ -14,6 +14,15 @@
 # Security:
 - org.springframework.security.web.context.SecurityContextPersistenceFilter
 
+# Configuration
+- spring-boot-autoconfigure-2.6.8.jar!/META-INF/spring-configuration-metadata.json
+- spring-boot-autoconfigure-2.6.8.jar!/META-INF/spring-configuration-metadata.json
+- org.springframework.boot.autoconfigure.session.SessionProperties
+- org.springframework.boot.autoconfigure.session.RedisSessionProperties
+- org.springframework.boot.autoconfigure.session.MongoSessionProperties
+- org.springframework.boot.autoconfigure.session.JdbcSessionProperties
+- org.springframework.boot.autoconfigure.session.HazelcastSessionProperties
+
 # WebMVC
 - javax.servlet.Filter
 - javax.servlet.FilterChain
