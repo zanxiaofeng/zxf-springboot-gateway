@@ -14,9 +14,12 @@
 # Security:
 - org.springframework.security.web.context.SecurityContextPersistenceFilter
 
-# Configuration
+# Configuration(
+- spring-boot-autoconfigure-2.6.8.jar!/META-INF/spring.factories
 - spring-boot-autoconfigure-2.6.8.jar!/META-INF/spring-configuration-metadata.json
 - spring-boot-autoconfigure-2.6.8.jar!/META-INF/spring-configuration-metadata.json
+- org.springframework.boot.autoconfigure.data.redis.RedisAutoConfiguration
+- org.springframework.boot.autoconfigure.session.SessionAutoConfiguration
 - org.springframework.boot.autoconfigure.session.SessionProperties
 - org.springframework.boot.autoconfigure.session.RedisSessionProperties
 - org.springframework.boot.autoconfigure.session.MongoSessionProperties
@@ -61,6 +64,7 @@
 - org.springframework.data.redis.serializer.RedisSerializer
 - org.springframework.data.redis.connection.Message;
 - org.springframework.data.redis.connection.MessageListener;
+- org.springframework.boot.autoconfigure.session.RedisSessionConfiguration
 
 # WebMVC.HttpSession.Mongo:
 - org.springframework.session.data.mongo.config.annotation.web.http.EnableMongoHttpSession
