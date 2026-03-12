@@ -22,21 +22,26 @@ public class SecurityConfig {
 
     @Bean
     public SecurityWebFilterChain securityWebFilterChain(ServerHttpSecurity http) {
-        http.formLogin().disable()
-                .httpBasic().disable()
-                .logout().disable()
-                .csrf().disable();
+        // Disable form login, HTTP basic, logout, and CSRF
+        http.formLogin(spec -> spec.disable())
+                .httpBasic(spec -> spec.disable())
+                .logout(spec -> spec.disable())
+                .csrf(spec -> spec.disable());
 
-        ServerHttpSecurity.AuthorizeExchangeSpec authorizeExchange = http.authorizeExchange();
-        authorizeExchange.pathMatchers(securityProperties.getAuthorize().getPermitAll()).permitAll();
-        securityProperties.getAuthorize().getHasAnyAuthority().forEach(settings ->
-                authorizeExchange.pathMatchers(settings[0])
-                        .hasAnyAuthority(Arrays.copyOfRange(settings, 1, settings.length))
+        // Configure authorization
+        http.authorizeExchange(spec -> {
+            spec.pathMatchers(securityProperties.getAuthorize().getPermitAll()).permitAll();
+            securityProperties.getAuthorize().getHasAnyAuthority().forEach(settings ->
+                    spec.pathMatchers(settings[0])
+                            .hasAnyAuthority(Arrays.copyOfRange(settings, 1, settings.length))
+            );
+            spec.anyExchange().authenticated();
+        });
+
+        // Configure exception handling
+        http.exceptionHandling(spec ->
+                spec.authenticationEntryPoint(authenticationEntryPoint())
         );
-        authorizeExchange.anyExchange().authenticated();
-
-        http.exceptionHandling()
-                .authenticationEntryPoint(authenticationEntryPoint());
 
         return http.build();
     }

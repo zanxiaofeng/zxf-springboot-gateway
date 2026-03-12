@@ -9,8 +9,8 @@ import zxf.springboot.authentication.MyAuthentication;
 import zxf.springboot.profileservice.security.SecurityUtils;
 
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 
 @RestController
 @RequestMapping("/profile")
