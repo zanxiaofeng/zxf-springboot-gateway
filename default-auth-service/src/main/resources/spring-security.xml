@@ -9,7 +9,7 @@
         http://www.springframework.org/schema/context/spring-context.xsd
         http://www.springframework.org/schema/security
         http://www.springframework.org/schema/security/spring-security.xsd">
-    <http use-expressions="true">
+    <http>
         <intercept-url pattern="/auth/logon-failed" access="permitAll()"/>
         <intercept-url pattern="/auth/logon-succeed" access="isAuthenticated()"/>
         <intercept-url pattern="/auth/home" access="isAuthenticated()"/>

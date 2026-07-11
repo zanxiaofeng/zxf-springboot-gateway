@@ -1,7 +1,7 @@
 package zxf.springboot.authservice.rest;
 
-import org.apache.logging.log4j.util.Strings;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import zxf.springboot.authservice.security.SecurityUtils;
@@ -50,7 +50,7 @@ public class AuthController {
         SecurityUtils.logon(session, name);
 
         String returnPage = (String) session.getAttribute(SESSION_ATTRIBUTE_RETURN_PAGE);
-        if (Strings.isNotEmpty(returnPage)) {
+        if (StringUtils.hasText(returnPage)) {
             return new ModelAndView("redirect:" + URI.create(siteUrl).resolve(returnPage));
         }
 

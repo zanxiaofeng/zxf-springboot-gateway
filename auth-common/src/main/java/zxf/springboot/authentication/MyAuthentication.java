@@ -1,14 +1,12 @@
 package zxf.springboot.authentication;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 
 import java.io.Serializable;
 import java.util.Collection;
 
-@JsonSerialize
 public class MyAuthentication implements Authentication {
     private MyUser myUser;
 
@@ -70,7 +68,6 @@ public class MyAuthentication implements Authentication {
         this.myUser = myUser;
     }
 
-    @JsonSerialize
     public static class MyUser implements Serializable {
         private String name;
         private Integer age = 1;
